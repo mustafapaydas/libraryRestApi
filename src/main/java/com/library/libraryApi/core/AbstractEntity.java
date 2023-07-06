@@ -1,8 +1,6 @@
 package com.library.libraryApi.core;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -57,5 +55,19 @@ public abstract class AbstractEntity implements BaseEntity{
 
     public void setUpdatedDate(LocalDateTime updatedDate) {
         this.updatedDate = updatedDate;
+    }
+
+    @PreUpdate
+    private void beforeUpdate() {
+
+//        setUpdatedBy(authorLogic.getCurrentUserId());
+        setUpdatedDate(LocalDateTime.now());
+    }
+
+    @PrePersist
+    private void beforePersist() {
+
+//        entity.setCreatedBy(authorLogic.getCurrentUserId());
+        setCreatedDate(LocalDateTime.now());
     }
 }

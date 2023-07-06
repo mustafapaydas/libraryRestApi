@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 1111
 spring:
   datasource:
     password: library
@@ -18,3 +18,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+---
+springdoc:
+  swagger-ui:
+    path: swagger-ui.html

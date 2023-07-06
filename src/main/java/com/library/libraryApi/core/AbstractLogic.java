@@ -4,9 +4,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public abstract class AbstractLogic<ENTITY,ID>{
-//    @Autowired protected
-    protected abstract JpaRepository<ENTITY, ID> getRepository();
+
+public abstract class AbstractLogic<ID,ENTITY>{
+    //    @Autowired protected
+    protected abstract JpaRepository<ENTITY,ID> getRepository();
 
     public  ENTITY create(ENTITY entity){
         return getRepository().saveAndFlush(entity);

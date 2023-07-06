@@ -2,17 +2,18 @@ package com.library.libraryApi.Logic;
 
 import com.library.libraryApi.Entity.Book;
 import com.library.libraryApi.Repository.BookRepository;
+import com.library.libraryApi.core.AbstractLogic;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BookLogic {
+public class BookLogic extends AbstractLogic<Integer, Book> {
     @Autowired
     BookRepository _repo;
 
-    public void create() {
-        Book book = new Book();
-        book.setTitle("xxxxxxxx");
-        _repo.save(book);
+    @Override
+    protected JpaRepository<Book, Integer> getRepository() {
+        return _repo;
     }
 }

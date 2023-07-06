@@ -13,7 +13,7 @@ public abstract class AbstractMapper<DTO extends AbstractDTO,ENTITY extends Abst
         dto.setUpdatedBy(entity.getUpdatedBy());
         return dto;
     }
-    public ENTITY convetToEntity(DTO dto){
+    public ENTITY tooEntity(DTO dto){
         ENTITY entity = convertToEntity(dto);
         entity.setCreatedDate(dto.getCreatedDate());
         entity.setCreatedBy(dto.getCreatedBy());
