@@ -1,0 +1,20 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    password: library
+    url: jdbc:postgresql://localhost:5435/library
+    username: library
+  jpa:
+    properties:
+      hibernate:
+        generate_statistics: false
+        format_sql: false
+        enable_lazy_load_no_trans: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
