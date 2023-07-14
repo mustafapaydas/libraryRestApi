@@ -17,7 +17,27 @@ spring:
             non_contextual_creation: true
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:5001/auth/realms/library/protocol/openid-connect/certs
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:5001/auth/realms/library
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            authorization-grant-type: authorization_code
+            client-id: library
+            scope: openid
+        resourceserver:
+          jwt:
+            issuer-uri: http://localhost:5001/auth/realms/library
+
+
 ---
 springdoc:
   swagger-ui:

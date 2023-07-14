@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class BookLogic extends AbstractLogic<Integer, Book> {
     @Autowired
-    BookRepository _repo;
+    BookRepository bookRepository;
 
     @Override
     protected JpaRepository<Book, Integer> getRepository() {
-        return _repo;
+        return bookRepository;
     }
 }
