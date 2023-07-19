@@ -32,10 +32,12 @@ spring:
           keycloak:
             authorization-grant-type: authorization_code
             client-id: library
+            client-secret: 92TXNy7XmNRNxQkSKCLq3UJfHLVQngEB
             scope: openid
         resourceserver:
           jwt:
             issuer-uri: http://localhost:5001/auth/realms/library
+
 
 
 ---
