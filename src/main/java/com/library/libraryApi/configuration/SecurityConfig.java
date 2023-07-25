@@ -1,20 +1,22 @@
 package com.library.libraryApi.configuration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationFilter;
+
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+import org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
 @CrossOrigin
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig{
@@ -27,18 +29,21 @@ public class SecurityConfig{
     @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}")
     private String jwkSetUri;
 
+    private final JwtAuthConverter jwtAuthConverter;
+    public SecurityConfig(JwtAuthConverter jwtAuthConverter) {
+        this.jwtAuthConverter = jwtAuthConverter;
+    }
 
 
     @Bean
     public SecurityFilterChain config(HttpSecurity http) throws Exception  {
-        return http.authorizeHttpRequests(auth -> {
-                    auth.anyRequest().authenticated();
-                })
+
+        return http
                 .oauth2ResourceServer(oauth2 ->
-                        oauth2.opaqueToken
-                (token -> token.introspectionUri(this.introspectUri)
-                        .introspectionClientCredentials(this.clientId, this.clientSecret)))
-                .addFilterBefore(new TokenRequestFilter(), BearerTokenAuthenticationFilter.class).build();
+                        oauth2.jwt(jwtConfigurer -> jwtConfigurer.jwtAuthenticationConverter(jwtAuthConverter))).authorizeHttpRequests(auth -> {
+                    auth.anyRequest().authenticated();
+                }).httpBasic(Customizer.withDefaults())
+                .build();
 
     }
 

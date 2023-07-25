@@ -17,7 +17,20 @@ public class Role extends AbstractEntity {
     @Column(name = "title")
     private String title;
     @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "tbl_role_authorization_code_relation",
+            joinColumns = {@JoinColumn(name = "role_id")},
+            inverseJoinColumns = {@JoinColumn(name = "auth_id")},
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"role_id", "auth_id"})})
     private List<AuthorizationCode> codes;
+
+    public List<AuthorizationCode> getCodes() {
+        return codes;
+    }
+
+    public void setCodes(List<AuthorizationCode> codes) {
+        this.codes = codes;
+    }
 
     @Override
     public Integer getId() {

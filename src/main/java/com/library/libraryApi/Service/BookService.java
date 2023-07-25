@@ -29,15 +29,20 @@ public class BookService extends AbstractService<Integer, BookDTO, Book> {
         return bookMapper;
     }
 
-//    @PreAuthorize("hasAnyAuthority('XXXXXX')")
+
     @Override
+    @PreAuthorize("hasAuthority('XXXXXX')")
     public BookDTO create(BookDTO dto){
+
         return getMapper().toDTO(getLogic().create(getMapper().tooEntity(dto)));
     }
 
     @Override
 //    @PreAuthorize("hasAnyAuthority('/admin')")
+
+    @PreAuthorize("hasAuthority('xxx')")
     public BookDTO findById(Integer integer) {
+
         return super.findById(integer);
     }
 }

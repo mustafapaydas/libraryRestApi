@@ -15,9 +15,9 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
-    show-sql: true
+    show-sql: false
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
   security:
     oauth2:
       resourceserver:

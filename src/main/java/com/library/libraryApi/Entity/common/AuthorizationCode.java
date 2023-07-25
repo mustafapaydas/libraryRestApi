@@ -15,14 +15,18 @@ public class AuthorizationCode extends AbstractEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "authorization_code")
-    private EnumAuthorization authorizationCode;
+    private String authorizationCode;
     @Column(name = "title")
     private String title;
-    @ManyToMany
-    @JoinTable(  name = "tbl_authorization_code_role_relation",
-            joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "code_id"))
-    private List<Role> roles;
+
+    public String getAuthorizationCode() {
+        return authorizationCode;
+    }
+
+    public void setAuthorizationCode(String authorizationCode) {
+        this.authorizationCode = authorizationCode;
+    }
+
 
 
     @Override
