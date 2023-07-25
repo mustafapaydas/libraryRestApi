@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.Arrays;
 
 
 @Configuration
+@EnableWebMvc
 @EnableWebSecurity
 @CrossOrigin
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
@@ -43,7 +45,7 @@ public class SecurityConfig{
     @Bean
     public SecurityFilterChain config(HttpSecurity http) throws Exception  {
 
-        return http.cors(httpSecurityCorsConfigurer -> getCorsConfigurationSource())
+        return http
                 .oauth2ResourceServer(oauth2 ->
                         oauth2.jwt(jwtConfigurer -> jwtConfigurer.jwtAuthenticationConverter(jwtAuthConverter))).authorizeHttpRequests(auth -> {
                     auth.anyRequest().authenticated();
