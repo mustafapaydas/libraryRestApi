@@ -1,13 +1,28 @@
 package com.library.libraryApi.DTO;
 
+import com.library.libraryApi.Entity.BookAuthorRelation;
 import com.library.libraryApi.core.AbstractDTO;
 
+import java.util.List;
+
 public class BookDTO extends AbstractDTO<Integer> {
+    private Integer id;
     private String title;
     private String isbn;
     private Integer count;
     private Integer pageCount;
     private CategoryDTO categoryDTO;
+    private List<BookAuthorRelationDTO> bookAuthorRelations;
+
+
+
+    public List<BookAuthorRelationDTO> getBookAuthorRelations() {
+        return bookAuthorRelations;
+    }
+
+    public void setBookAuthorRelations(List<BookAuthorRelationDTO> bookAuthorRelations) {
+        this.bookAuthorRelations = bookAuthorRelations;
+    }
 
     public CategoryDTO getCategoryDTO() {
         return categoryDTO;
@@ -47,5 +62,15 @@ public class BookDTO extends AbstractDTO<Integer> {
 
     public void setPageCount(Integer pageCount) {
         this.pageCount = pageCount;
+    }
+
+    @Override
+    public Integer getId() {
+        return this.id;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

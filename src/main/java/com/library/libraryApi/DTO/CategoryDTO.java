@@ -3,6 +3,7 @@ package com.library.libraryApi.DTO;
 import com.library.libraryApi.core.AbstractDTO;
 
 public class CategoryDTO extends AbstractDTO<Integer> {
+    private Integer id;
     private String title;
 
 
@@ -14,4 +15,13 @@ public class CategoryDTO extends AbstractDTO<Integer> {
         this.title = title;
     }
 
- }
+    @Override
+    public Integer getId() {
+        return this.id;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
+    }
+}

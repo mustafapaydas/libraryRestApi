@@ -2,6 +2,7 @@ package com.library.libraryApi.Entity;
 import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 
 import com.library.libraryApi.core.AbstractEntity;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -26,13 +27,22 @@ public class Book extends AbstractEntity<Integer> {
     @JsonIncludeProperties({"id"})
     @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
+    @Nullable
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            mappedBy = "book",
+            orphanRemoval = true,
+            cascade = CascadeType.ALL)
+    private List<BookAuthorRelation> bookAuthorRelations;
 
-    @ManyToMany
-    @JoinTable(
-            name = "tbl_book_author_relation",
-            joinColumns = @JoinColumn(name = "author_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id"))
-    private List<Author> authors;
+    @Nullable
+    public List<BookAuthorRelation> getBookAuthorRelations() {
+        return bookAuthorRelations;
+    }
+
+    public void setBookAuthorRelations(@Nullable List<BookAuthorRelation> bookAuthorRelations) {
+        this.bookAuthorRelations = bookAuthorRelations;
+    }
 
     public String getTitle() {
         return title;
@@ -74,13 +84,7 @@ public class Book extends AbstractEntity<Integer> {
         this.category = category;
     }
 
-    public List<Author> getAuthors() {
-        return authors;
-    }
 
-    public void setAuthors(List<Author> authors) {
-        this.authors = authors;
-    }
 
     @Override
     public Integer getId() {

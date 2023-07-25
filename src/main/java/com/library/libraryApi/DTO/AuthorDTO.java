@@ -1,27 +1,27 @@
-package com.library.libraryApi.Entity;
+package com.library.libraryApi.DTO;
 
-
-
-import com.library.libraryApi.core.AbstractEntity;
+import com.library.libraryApi.Entity.Book;
+import com.library.libraryApi.core.AbstractDTO;
 import jakarta.persistence.*;
 
 import java.util.List;
 
-
-@Entity
-@Table(name = "tbl_author")
-public class Author extends AbstractEntity<Integer> {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id",nullable = false,unique = true)
+public class AuthorDTO extends AbstractDTO<Integer> {
     private Integer id;
-
-    @Column(name = "first_name")
     private String firstName;
-    @Column(name = "last_name")
     private String lastName;
-    @Column(name = "full_name")
     private String fullName;
+    private List<Book> books;
+
+    @Override
+    public Integer getId() {
+        return this.id;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -47,13 +47,11 @@ public class Author extends AbstractEntity<Integer> {
         this.fullName = fullName;
     }
 
-    @Override
-    public Integer getId() {
-        return id;
+    public List<Book> getBooks() {
+        return books;
     }
 
-    @Override
-    public void setId(Integer id) {
-        this.id = id;
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 }

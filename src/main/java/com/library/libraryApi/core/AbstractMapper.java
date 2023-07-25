@@ -1,5 +1,8 @@
 package com.library.libraryApi.core;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public abstract class AbstractMapper<T,DTO extends AbstractDTO<T>,ENTITY extends AbstractEntity<T>> {
     protected abstract DTO convertToDto(ENTITY entity);
 
@@ -22,5 +25,12 @@ public abstract class AbstractMapper<T,DTO extends AbstractDTO<T>,ENTITY extends
         entity.setUpdatedBy(dto.getUpdatedBy());
         entity.setUpdatedDate(dto.getUpdatedDate());
         return entity;
+    }
+
+    public List<ENTITY> toListEntity(List<DTO> dtos){
+        return dtos.stream().map(dto -> toEntity(dto)).collect(Collectors.toList());
+    }
+    public List<DTO> toListDTO(List<ENTITY> entities){
+        return entities.stream().map(entity -> toDTO(entity)).collect(Collectors.toList());
     }
 }
