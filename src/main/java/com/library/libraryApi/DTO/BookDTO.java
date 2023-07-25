@@ -2,11 +2,20 @@ package com.library.libraryApi.DTO;
 
 import com.library.libraryApi.core.AbstractDTO;
 
-public class BookDTO extends AbstractDTO {
+public class BookDTO extends AbstractDTO<Integer> {
     private String title;
     private String isbn;
     private Integer count;
     private Integer pageCount;
+    private CategoryDTO categoryDTO;
+
+    public CategoryDTO getCategoryDTO() {
+        return categoryDTO;
+    }
+
+    public void setCategoryDTO(CategoryDTO categoryDTO) {
+        this.categoryDTO = categoryDTO;
+    }
 
     public String getTitle() {
         return title;

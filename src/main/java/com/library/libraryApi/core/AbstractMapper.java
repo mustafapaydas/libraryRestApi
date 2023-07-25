@@ -1,6 +1,6 @@
 package com.library.libraryApi.core;
 
-public abstract class AbstractMapper<DTO extends AbstractDTO,ENTITY extends AbstractEntity> {
+public abstract class AbstractMapper<T,DTO extends AbstractDTO<T>,ENTITY extends AbstractEntity<T>> {
     protected abstract DTO convertToDto(ENTITY entity);
 
     protected abstract ENTITY convertToEntity(DTO dto);
@@ -14,7 +14,7 @@ public abstract class AbstractMapper<DTO extends AbstractDTO,ENTITY extends Abst
         dto.setUpdatedBy(entity.getUpdatedBy());
         return dto;
     }
-    public ENTITY tooEntity(DTO dto){
+    public ENTITY toEntity(DTO dto){
         ENTITY entity = convertToEntity(dto);
         entity.setId(dto.getId());
         entity.setCreatedDate(dto.getCreatedDate());

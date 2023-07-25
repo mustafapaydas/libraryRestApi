@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @MappedSuperclass
 @EntityListeners({AuditingEntityListener.class})
-public abstract class AbstractEntity implements BaseEntity{
+public abstract class AbstractEntity<T> implements BaseEntity<T>{
     @CreatedBy
     @Column(name = "created_by")
     private String createdBy;
@@ -60,15 +60,11 @@ public abstract class AbstractEntity implements BaseEntity{
 
     @PreUpdate
     private void beforeUpdate() {
-
-//        setUpdatedBy(authorLogic.getCurrentUserId());
         setUpdatedDate(LocalDateTime.now());
     }
 
     @PrePersist
     private void beforePersist() {
-
-//        entity.setCreatedBy(authorLogic.getCurrentUserId());
         setCreatedDate(LocalDateTime.now());
     }
 }

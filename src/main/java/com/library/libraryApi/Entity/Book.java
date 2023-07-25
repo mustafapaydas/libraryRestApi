@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "tbl_book")
-public class Book extends AbstractEntity {
+public class Book extends AbstractEntity<Integer> {
     @Id
     @Column(name = "id", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)

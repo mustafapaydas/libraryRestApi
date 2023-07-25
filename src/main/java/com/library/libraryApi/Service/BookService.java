@@ -25,7 +25,7 @@ public class BookService extends AbstractService<Integer, BookDTO, Book> {
     }
 
     @Override
-    protected AbstractMapper<BookDTO, Book> getMapper() {
+    protected AbstractMapper<Integer,BookDTO, Book> getMapper() {
         return bookMapper;
     }
 
@@ -33,13 +33,11 @@ public class BookService extends AbstractService<Integer, BookDTO, Book> {
     @Override
     @PreAuthorize("hasAuthority('xxx')")
     public BookDTO create(BookDTO dto){
-        return getMapper().toDTO(getLogic().create(getMapper().tooEntity(dto)));
+        return getMapper().toDTO(getLogic().create(getMapper().toEntity(dto)));
     }
 
     @Override
-//    @PreAuthorize("hasAnyAuthority('/admin')")
-
-    @PreAuthorize("hasAuthority('dfgdfsgd')")
+    @PreAuthorize("hasAuthority('xxx')")
     public BookDTO findById(Integer integer) {
 
         return super.findById(integer);

@@ -1,9 +1,9 @@
 package com.library.libraryApi.core;
 
-public abstract class AbstractService<ID, DTO extends AbstractDTO, ENTITY extends AbstractEntity>{
+public abstract class AbstractService<ID, DTO extends AbstractDTO<ID>, ENTITY extends AbstractEntity<ID>>{
     protected abstract AbstractLogic<ID, ENTITY> getLogic();
 
-    protected abstract AbstractMapper<DTO, ENTITY> getMapper();
+    protected abstract AbstractMapper<ID,DTO, ENTITY> getMapper();
 
     public DTO create(DTO dto){
         return getMapper().toDTO(getLogic().create(getMapper().convertToEntity(dto)));

@@ -1,6 +1,6 @@
 package com.library.libraryApi.core;
 
-public interface BaseEntity {
-    Integer getId();
-    void setId(Integer id);
+public interface BaseEntity<T> {
+    T getId();
+    void setId(T id);
 }

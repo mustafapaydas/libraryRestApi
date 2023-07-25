@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "tbl_author")
-public class Author extends AbstractEntity {
+public class Author extends AbstractEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id",nullable = false,unique = true)
