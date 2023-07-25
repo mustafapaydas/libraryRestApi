@@ -2,7 +2,8 @@ package com.library.libraryApi.core;
 
 import java.time.LocalDateTime;
 
-public class AbstractDTO {
+public class AbstractDTO implements BaseDTO {
+    private Integer id;
     private String createdBy;
     private LocalDateTime createdDate;
     private String updatedBy;
@@ -39,4 +40,13 @@ public class AbstractDTO {
     public void setUpdatedDate(LocalDateTime updatedDate) {
         this.updatedDate = updatedDate;
     }
+
+    @Override
+    public Integer getId() {
+        return this.id;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.id = id;}
 }

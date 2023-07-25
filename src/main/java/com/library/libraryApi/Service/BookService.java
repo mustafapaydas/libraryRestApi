@@ -33,7 +33,6 @@ public class BookService extends AbstractService<Integer, BookDTO, Book> {
     @Override
     @PreAuthorize("hasAuthority('xxx')")
     public BookDTO create(BookDTO dto){
-
         return getMapper().toDTO(getLogic().create(getMapper().tooEntity(dto)));
     }
 

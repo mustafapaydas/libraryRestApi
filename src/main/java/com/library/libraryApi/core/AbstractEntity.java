@@ -15,6 +15,7 @@ public abstract class AbstractEntity implements BaseEntity{
     @CreatedBy
     @Column(name = "created_by")
     private String createdBy;
+
     @CreatedDate
     @Column(name = "created_date")
     private LocalDateTime createdDate;

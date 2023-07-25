@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public abstract class AbstractApi <DTO extends AbstractDTO,ENTITY extends AbstractEntity,ID>{
-    protected abstract AbstractService<ID, DTO,ENTITY> getService();
+public abstract class AbstractApi <DTO extends AbstractDTO,ID>{
+    protected abstract AbstractService<ID, DTO,?> getService();
 
     @GetMapping("/{id}")
     @Operation(
