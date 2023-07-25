@@ -11,7 +11,7 @@ public abstract class AbstractService<ID, DTO extends AbstractDTO, ENTITY extend
     public DTO update(DTO dto){
         return getMapper().toDTO(getLogic().update(getMapper().convertToEntity(dto)));
     }
-    public void delete(ID id){
+    public void deleteById(ID id){
         getLogic().delete(id);
     }
     public DTO findById(ID id){

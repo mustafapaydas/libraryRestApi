@@ -29,7 +29,7 @@ public class Book extends AbstractEntity {
 
     @ManyToMany
     @JoinTable(
-            name = "author",
+            name = "tbl_book_author_relation",
             joinColumns = @JoinColumn(name = "author_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Author> authors;

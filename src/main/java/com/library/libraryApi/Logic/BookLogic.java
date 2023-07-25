@@ -15,10 +15,6 @@ public class BookLogic extends AbstractLogic<Integer, Book> {
 
     @Override
     protected JpaRepository<Book, Integer> getRepository() {
-        System.out.println("\n\nccccccccccccccc");
-        System.out.println(SecurityContextHolder.getContext().getAuthentication());
-        System.out.println("\n\nccccccccccccccc");
-
         return bookRepository;
     }
 }
