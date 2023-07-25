@@ -1,27 +1,48 @@
 package com.library.libraryApi.configuration;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.library.libraryApi.Entity.common.Role;
 
 
 import java.util.List;
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class KeycloakUser {
-    @JsonProperty("sub")
+
+public class UserInfo {
+
     private String userId;
-    @JsonProperty("name")
+
     private String name;
-    @JsonProperty("email_verified")
+
     private String verify;
-    @JsonProperty("preferred_username")
+
     private String username;
-    @JsonProperty("family_name")
+
     private String lastname;
-    @JsonProperty("email")
+
     private String email;
-    @JsonProperty("groups")
+
     private List<String> roles;
+    private List<String> authorities;
+
+    public List<String> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(List<String> authorities) {
+        this.authorities = authorities;
+    }
+
+    public UserInfo() {
+
+    }
+
+    public UserInfo(String userId, String name, String verify, String username, String lastname, String email, List<String> roles) {
+        this.userId = userId;
+        this.name = name;
+        this.verify = verify;
+        this.username = username;
+        this.lastname = lastname;
+        this.email = email;
+        this.roles = roles;
+    }
 
     public String getUserId() {
         return userId;

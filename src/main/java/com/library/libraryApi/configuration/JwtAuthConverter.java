@@ -8,9 +8,7 @@ import com.library.libraryApi.Repository.common.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtClaimNames;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
@@ -28,6 +26,7 @@ public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationTo
     private final JwtAuthConverterProperties properties;
     @Autowired
     RoleRepository roleRepository;
+    @Autowired AuthenticationLogic authenticationLogic;
 
     public JwtAuthConverter(JwtAuthConverterProperties properties) {
         this.jwtAuthenticationConverter = new JwtAuthenticationConverter();
@@ -38,14 +37,19 @@ public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationTo
     @Override
     public AbstractAuthenticationToken convert(Jwt jwt) {
         Collection<SimpleGrantedAuthority> auths = extractResourceRoles(jwt);
-        JwtAuthenticationToken jwtAuthenticationToken =
-                new JwtAuthenticationToken(jwt, auths);
-        SecurityContextHolder.getContext().setAuthentication(jwtAuthenticationToken);
-        Collection<SimpleGrantedAuthority> authorities = auths;
-        return new JwtAuthenticationToken(jwt, authorities, getPrincipalClaimName(jwt));
+        setUserInfo(jwt,auths);
+        return new JwtAuthenticationToken(jwt, auths, getPrincipalClaimName(jwt));
     }
-
-
+    private void setUserInfo(Jwt jwt,Collection<SimpleGrantedAuthority> auths){
+        UserInfo user = new UserInfo();
+        user.setUserId(jwt.getClaims().get("sub").toString());
+        user.setEmail(jwt.getClaims().get("email").toString());
+        user.setName(jwt.getClaims().get("name").toString());
+        user.setLastname(jwt.getClaims().get("family_name").toString());
+        user.setRoles(Arrays.asList(jwt.getClaims().get("groups")).stream().map(r->r.toString()).collect(Collectors.toList()));
+        user.setAuthorities(new ArrayList<>(auths.stream().map(a->a.toString()).collect(Collectors.toList())));
+        authenticationLogic.setCurrentUser(user);
+    }
 
     private String getPrincipalClaimName(Jwt jwt) {
         String claimName = JwtClaimNames.SUB;
