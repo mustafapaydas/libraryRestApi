@@ -7,6 +7,25 @@ public abstract class AbstractMapper<T,DTO extends AbstractDTO<T>,ENTITY extends
     protected abstract DTO convertToDto(ENTITY entity);
 
     protected abstract ENTITY convertToEntity(DTO dto);
+    private AbstractMapper<?, ?, ?> parent;
+    private Integer level;
+    public AbstractMapper(Class<DTO> dtoClazz, Class<ENTITY> entityClazz) {
+        parent = this;
+    }
+
+    public AbstractMapper(
+            AbstractMapper<?, ?, ?> parent, Class<DTO> dtoClazz, Class<ENTITY> entityClazz,Integer level) {
+        this(dtoClazz, entityClazz);
+        this.parent = parent != null ? parent : this;
+        this.level = level;
+    }
+    public AbstractMapper(
+            AbstractMapper<?, ?, ?> parent, Class<DTO> dtoClazz, Class<ENTITY> entityClazz) {
+        this(dtoClazz, entityClazz);
+        this.parent = parent != null ? parent : this;
+    }
+    public AbstractMapper(){}
+
 
     public DTO toDTO(ENTITY entity){
         DTO dto = convertToDto(entity);

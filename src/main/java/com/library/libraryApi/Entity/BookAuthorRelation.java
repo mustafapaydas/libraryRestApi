@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import com.library.libraryApi.Enum.EnumAuthorType;
 import com.library.libraryApi.core.AbstractEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tbl_book_author_relation")
@@ -30,7 +31,9 @@ public class BookAuthorRelation extends AbstractEntity<Integer> {
     @ManyToOne
     @JoinColumn(name = "author", referencedColumnName = "id", nullable = false)
     private Author author;
-    @Column(name = "author_type")
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "author_type",columnDefinition = "enum_author_type")
     private EnumAuthorType authorType;
 
     public Book getBook() {

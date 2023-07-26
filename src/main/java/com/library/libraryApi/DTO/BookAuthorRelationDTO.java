@@ -7,23 +7,23 @@ import com.library.libraryApi.core.AbstractDTO;
 
 public class BookAuthorRelationDTO extends AbstractDTO<Integer> {
     private Integer id;
-    private Book book;
-    private Author author;
+    private BookDTO book;
+    private AuthorDTO author;
     private EnumAuthorType authorType;
 
-    public Book getBook() {
+    public BookDTO getBook() {
         return book;
     }
 
-    public void setBook(Book book) {
+    public void setBook(BookDTO book) {
         this.book = book;
     }
 
-    public Author getAuthor() {
+    public AuthorDTO getAuthor() {
         return author;
     }
 
-    public void setAuthor(Author author) {
+    public void setAuthor(AuthorDTO author) {
         this.author = author;
     }
 
