@@ -1,9 +1,7 @@
 package com.library.libraryApi.DTO;
 
-import com.library.libraryApi.Entity.Author;
-import com.library.libraryApi.Entity.Book;
 import com.library.libraryApi.Enum.EnumAuthorType;
-import com.library.libraryApi.core.AbstractDTO;
+import com.library.libraryApi.core.Abstract.AbstractDTO;
 
 public class BookAuthorRelationDTO extends AbstractDTO<Integer> {
     private Integer id;

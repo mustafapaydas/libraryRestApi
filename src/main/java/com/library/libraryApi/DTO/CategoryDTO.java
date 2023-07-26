@@ -1,6 +1,6 @@
 package com.library.libraryApi.DTO;
 
-import com.library.libraryApi.core.AbstractDTO;
+import com.library.libraryApi.core.Abstract.AbstractDTO;
 
 public class CategoryDTO extends AbstractDTO<Integer> {
     private Integer id;

@@ -2,7 +2,7 @@ package com.library.libraryApi.Mapper;
 
 import com.library.libraryApi.DTO.BookAuthorRelationDTO;
 import com.library.libraryApi.Entity.BookAuthorRelation;
-import com.library.libraryApi.core.AbstractMapper;
+import com.library.libraryApi.core.Abstract.AbstractMapper;
 
 public class BookAuthorRelationMapper extends AbstractMapper<Integer, BookAuthorRelationDTO, BookAuthorRelation> {
     AuthorMapper authorMapper = new AuthorMapper(this);

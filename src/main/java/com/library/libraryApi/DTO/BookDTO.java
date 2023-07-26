@@ -1,7 +1,6 @@
 package com.library.libraryApi.DTO;
 
-import com.library.libraryApi.Entity.BookAuthorRelation;
-import com.library.libraryApi.core.AbstractDTO;
+import com.library.libraryApi.core.Abstract.AbstractDTO;
 
 import java.util.List;
 

@@ -6,6 +6,7 @@ import com.library.libraryApi.Entity.common.AuthorizationCode;
 import com.library.libraryApi.Entity.common.Role;
 import com.library.libraryApi.Repository.common.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,6 +22,8 @@ import java.util.stream.Collectors;
 
 @Component
 public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationToken> {
+    @Value("${role-attribute}")
+    private String role;
     private JwtAuthenticationConverter jwtAuthenticationConverter;
     private JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter;
     private final JwtAuthConverterProperties properties;
@@ -46,7 +49,7 @@ public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationTo
         user.setEmail(jwt.getClaims().get("email").toString());
         user.setName(jwt.getClaims().get("name").toString());
         user.setLastname(jwt.getClaims().get("family_name").toString());
-        user.setRoles(Arrays.asList(jwt.getClaims().get("groups")).stream().map(r->r.toString()).collect(Collectors.toList()));
+        user.setRoles(Arrays.asList(jwt.getClaims().get(role)).stream().map(r->r.toString()).collect(Collectors.toList()));
         user.setAuthorities(new ArrayList<>(auths.stream().map(a->a.toString()).collect(Collectors.toList())));
         authenticationLogic.setCurrentUser(user);
     }

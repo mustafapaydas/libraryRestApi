@@ -1,10 +1,8 @@
 package com.library.libraryApi.Mapper;
 
-import com.library.libraryApi.DTO.BookDTO;
 import com.library.libraryApi.DTO.CategoryDTO;
-import com.library.libraryApi.Entity.Book;
 import com.library.libraryApi.Entity.Category;
-import com.library.libraryApi.core.AbstractMapper;
+import com.library.libraryApi.core.Abstract.AbstractMapper;
 
 public class CategoryMapper extends AbstractMapper<Integer, CategoryDTO,Category> {
     @Override

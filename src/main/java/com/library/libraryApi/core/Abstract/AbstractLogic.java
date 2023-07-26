@@ -1,16 +1,12 @@
-package com.library.libraryApi.core;
+package com.library.libraryApi.core.Abstract;
 
 import com.library.libraryApi.configuration.AuthenticationLogic;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
 
-
-public abstract class AbstractLogic<ID,ENTITY> extends AuthenticationLogic{
+public abstract class AbstractLogic<ID,ENTITY> extends AuthenticationLogic implements ILogic<ENTITY,ID>{
     //    @Autowired protected
     protected abstract JpaRepository<ENTITY,ID> getRepository();
-
-
     public  ENTITY create(ENTITY entity){
         if (entity instanceof AbstractEntity){
             AbstractEntity entity1 = (AbstractEntity) entity;
@@ -28,6 +24,7 @@ public abstract class AbstractLogic<ID,ENTITY> extends AuthenticationLogic{
     public ENTITY findById(ID id){
         return getRepository().findById(id).get();
     }
+
     public void delete(ID id){
         getRepository().deleteById(id);
     }

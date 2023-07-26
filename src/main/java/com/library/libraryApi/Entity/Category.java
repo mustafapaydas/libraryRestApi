@@ -1,7 +1,7 @@
 package com.library.libraryApi.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIncludeProperties;
-import com.library.libraryApi.core.AbstractEntity;
+import com.library.libraryApi.core.Abstract.AbstractEntity;
 import jakarta.persistence.*;
 
 

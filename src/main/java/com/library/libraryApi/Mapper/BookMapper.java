@@ -2,7 +2,7 @@ package com.library.libraryApi.Mapper;
 
 import com.library.libraryApi.DTO.BookDTO;
 import com.library.libraryApi.Entity.Book;
-import com.library.libraryApi.core.AbstractMapper;
+import com.library.libraryApi.core.Abstract.AbstractMapper;
 import org.springframework.util.ObjectUtils;
 
 public class BookMapper extends AbstractMapper<Integer,BookDTO, Book> {

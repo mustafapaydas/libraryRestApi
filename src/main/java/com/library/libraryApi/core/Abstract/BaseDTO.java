@@ -1,4 +1,4 @@
-package com.library.libraryApi.core;
+package com.library.libraryApi.core.Abstract;
 
 public interface BaseDTO<T> {
     public T getId();

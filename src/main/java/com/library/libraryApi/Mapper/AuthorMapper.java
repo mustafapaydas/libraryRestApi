@@ -1,10 +1,8 @@
 package com.library.libraryApi.Mapper;
 
 import com.library.libraryApi.DTO.AuthorDTO;
-import com.library.libraryApi.DTO.CategoryDTO;
 import com.library.libraryApi.Entity.Author;
-import com.library.libraryApi.Entity.Category;
-import com.library.libraryApi.core.AbstractMapper;
+import com.library.libraryApi.core.Abstract.AbstractMapper;
 
 public class AuthorMapper extends AbstractMapper<Integer, AuthorDTO, Author> {
     public AuthorMapper() {

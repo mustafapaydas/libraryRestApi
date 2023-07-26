@@ -1,4 +1,4 @@
-package com.library.libraryApi.core;
+package com.library.libraryApi.core.Abstract;
 
 import java.util.List;
 import java.util.stream.Collectors;

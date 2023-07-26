@@ -1,8 +1,7 @@
 package com.library.libraryApi.DTO;
 
 import com.library.libraryApi.Entity.Book;
-import com.library.libraryApi.core.AbstractDTO;
-import jakarta.persistence.*;
+import com.library.libraryApi.core.Abstract.AbstractDTO;
 
 import java.util.List;
 

@@ -2,11 +2,9 @@ package com.library.libraryApi.Api;
 
 import com.library.libraryApi.DTO.BookDTO;
 import com.library.libraryApi.Service.BookService;
-import com.library.libraryApi.core.AbstractApi;
-import com.library.libraryApi.core.AbstractService;
+import com.library.libraryApi.core.Abstract.AbstractApi;
+import com.library.libraryApi.core.Abstract.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 

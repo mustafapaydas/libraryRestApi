@@ -1,4 +1,4 @@
-package com.library.libraryApi.core;
+package com.library.libraryApi.core.Abstract;
 
 public abstract class AbstractService<ID, DTO extends AbstractDTO<ID>, ENTITY extends AbstractEntity<ID>>{
     protected abstract AbstractLogic<ID, ENTITY> getLogic();
