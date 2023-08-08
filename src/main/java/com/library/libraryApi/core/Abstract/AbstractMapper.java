@@ -8,7 +8,7 @@ public abstract class AbstractMapper<T,DTO extends AbstractDTO<T>,ENTITY extends
 
     protected abstract ENTITY convertToEntity(DTO dto);
     private AbstractMapper<?, ?, ?> parent;
-    private Integer level;
+    protected   Integer level;
     public AbstractMapper(Class<DTO> dtoClazz, Class<ENTITY> entityClazz) {
         parent = this;
     }

@@ -31,15 +31,21 @@ public class BookService extends AbstractService<Integer, BookDTO, Book> {
 
 
     @Override
-    @PreAuthorize("hasAuthority('xxx')")
+    @PreAuthorize("hasAuthority('SAVE_BOOK_RECORD')")
     public BookDTO create(BookDTO dto){
         return getMapper().toDTO(getLogic().create(getMapper().toEntity(dto)));
     }
 
     @Override
-    @PreAuthorize("hasAuthority('xxx')")
+//    @PreAuthorize("hasAuthority('VIEW_BOOK_RECORD')")
     public BookDTO findById(Integer integer) {
 
         return super.findById(integer);
+    }
+
+    @Override
+    @PreAuthorize("hasAuthority('DELETE_BOOK')")
+    public void deleteById(Integer integer) {
+        super.deleteById(integer);
     }
 }

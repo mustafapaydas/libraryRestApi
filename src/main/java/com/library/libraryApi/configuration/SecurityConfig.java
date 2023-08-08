@@ -24,7 +24,6 @@ import java.util.Arrays;
 @Configuration
 @EnableWebMvc
 @EnableWebSecurity
-@CrossOrigin
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig{
     @Value("${spring.security.oauth2.client.registration.keycloak.client-id}")
@@ -45,7 +44,7 @@ public class SecurityConfig{
     @Bean
     public SecurityFilterChain config(HttpSecurity http) throws Exception  {
 
-        return http
+        return http.csrf(c->c.disable()).cors(cors->cors.configurationSource(getCorsConfigurationSource()))
                 .oauth2ResourceServer(oauth2 ->
                         oauth2.jwt(jwtConfigurer -> jwtConfigurer.jwtAuthenticationConverter(jwtAuthConverter))).authorizeHttpRequests(auth -> {
                     auth.anyRequest().authenticated();
@@ -56,8 +55,8 @@ public class SecurityConfig{
 
     @Bean
     public CorsConfigurationSource getCorsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
-            configuration.setAllowedOriginPatterns(Arrays.asList("*"));
+            CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
+            configuration.setAllowedOriginPatterns(Arrays.asList("**"));
             configuration.setAllowedMethods(Arrays.asList("*"));
             configuration.setAllowCredentials(true);
             configuration.setAllowedHeaders(Arrays.asList("*"));
